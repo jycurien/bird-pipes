@@ -79,13 +79,6 @@ const pipe = {
   },
 }
 
-startButton.addEventListener('click', () => {
-  if (!isGameStarted) {
-    startGame()
-    startButton.style.visibility = 'hidden'
-  }
-})
-
 function drawScore() {
   ctx.font = '24px Arial'
   ctx.fillStyle = 'black'
@@ -157,6 +150,13 @@ function startGame() {
   isGameStarted = true
   gameLoop()
 }
+
+startButton.addEventListener('click', () => {
+  if (!isGameStarted) {
+    startGame()
+    startButton.style.visibility = 'hidden'
+  }
+})
 
 document.addEventListener('keydown', function (e) {
   if (e.code === 'Space' && isGameStarted) {
