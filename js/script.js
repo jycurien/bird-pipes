@@ -94,7 +94,7 @@ function drawScore() {
 
 function gameLoop() {
   if (!isGameStarted) {
-    return // Skip game loop if game has not started
+    return
   }
 
   ctx.clearRect(0, 0, canvas.width, canvas.height)
