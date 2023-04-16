@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    RewriteCond %{HTTP_HOST} bird-pipes.jycurien\.fr [NC]
+    RewriteCond %{SERVER_PORT} 80
+    RewriteRule ^(.*)$ https://bird-pipes.jycurien.fr/$1 [R,L]
+</IfModule>
