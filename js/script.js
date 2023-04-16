@@ -99,7 +99,7 @@ function gameLoop() {
   }
 
   ctx.clearRect(0, 0, canvas.width, canvas.height)
-  ctx.drawImage(background, 0, 0, 800, 600)
+  ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
 
   bird.update()
   bird.draw()
@@ -168,6 +168,12 @@ startButton.addEventListener('click', () => {
 
 document.addEventListener('keydown', function (e) {
   if (e.code === 'Space' && isGameStarted) {
+    bird.jump()
+  }
+})
+
+document.addEventListener('touchstart', function (e) {
+  if (isGameStarted) {
     bird.jump()
   }
 })
