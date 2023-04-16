@@ -8,6 +8,12 @@ body {
     min-height: 100vh;
 }
 
+p {
+    text-align: center;
+    color: #fefefe;
+    margin: 2rem auto;
+}
+
 #gameCanvas {
     display: block;
     margin: auto;

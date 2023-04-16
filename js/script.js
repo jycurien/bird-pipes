@@ -7,23 +7,38 @@ let score = 0
 let isGameStarted = false
 let frames = 0
 const background = new Image()
-background.src = './assets/bg.jpg'
+background.src = 'assets/bg.jpg'
+const birdFrame = new Image()
+birdFrame.src = 'assets/bird-frame-1.png'
 
 const bird = {
   x: 100,
   y: canvas.height / 2,
-  radius: 20,
+  // radius: 20,
+  width: 60,
+  height: 45,
   velocity: 0,
   gravity: 0.5,
   jumpHeight: 10,
+  frame: birdFrame,
+  frameNum: 1,
 
   draw() {
-    ctx.beginPath()
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-    ctx.fillStyle = 'yellow'
-    ctx.fill()
-    ctx.stroke()
-    ctx.closePath()
+    if (frames % 6 === 0) {
+      this.switchFrame()
+    }
+    ctx.drawImage(this.frame, this.x, this.y, this.width, this.height)
+    // ctx.beginPath()
+    // ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+    // ctx.fillStyle = 'yellow'
+    // ctx.fill()
+    // ctx.stroke()
+    // ctx.closePath()
+  },
+
+  switchFrame() {
+    this.frameNum = this.frameNum === 1 ? 2 : 1
+    this.frame.src = `assets/bird-frame-${this.frameNum}.png`
   },
 
   update() {
@@ -36,14 +51,14 @@ const bird = {
   },
 
   collideWithGround() {
-    return this.y + this.radius > canvas.height
+    return this.y + this.height > canvas.height
   },
 
   collideWithPipe(pipe) {
-    const birdTop = this.y - (this.radius - 5)
-    const birdBottom = this.y + (this.radius - 5)
-    const birdStart = this.x + (this.radius - 5)
-    const birdEnd = this.x - (this.radius - 5)
+    const birdTop = this.y
+    const birdBottom = this.y + this.height
+    const birdStart = this.x + this.width
+    const birdEnd = this.x
     const pipeTopBottom = pipe.y + pipe.height
     const pipeBottomTop = pipe.y + pipe.height + pipe.gap
     const pipeFront = pipe.x
@@ -93,8 +108,8 @@ function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   ctx.drawImage(background, 0, 0, 800, 600)
 
-  bird.draw()
   bird.update()
+  bird.draw()
 
   if (bird.collideWithGround()) {
     endGame()
@@ -135,7 +150,7 @@ function endGame() {
   isGameStarted = false
   ctx.font = '48px Arial'
   ctx.fillStyle = 'black'
-  ctx.fillText(`Game Over`, canvas.width / 2 - 100, canvas.height / 2)
+  ctx.fillText(`Game Over`, canvas.width / 2 - 120, canvas.height / 2)
   ctx.font = '24px Arial'
   ctx.fillText(`Score: ${score}`, canvas.width / 2 - 40, canvas.height / 2 + 40)
   startButton.style.visibility = 'visible'
