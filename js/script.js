@@ -7,7 +7,7 @@ let score = 0
 let isGameStarted = false
 let frames = 0
 const background = new Image()
-background.src = './assets/bg.png'
+background.src = './assets/bg.jpg'
 
 const bird = {
   x: 100,
@@ -91,7 +91,7 @@ function gameLoop() {
   }
 
   ctx.clearRect(0, 0, canvas.width, canvas.height)
-  ctx.drawImage(background, 0, 0)
+  ctx.drawImage(background, 0, 0, 800, 600)
 
   bird.draw()
   bird.update()
@@ -135,7 +135,7 @@ function endGame() {
   isGameStarted = false
   ctx.font = '48px Arial'
   ctx.fillStyle = 'black'
-  ctx.fillText(`Game Over`, canvas.width / 2 - 80, canvas.height / 2)
+  ctx.fillText(`Game Over`, canvas.width / 2 - 100, canvas.height / 2)
   ctx.font = '24px Arial'
   ctx.fillText(`Score: ${score}`, canvas.width / 2 - 40, canvas.height / 2 + 40)
   startButton.style.visibility = 'visible'
