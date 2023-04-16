@@ -14,7 +14,6 @@ birdFrame.src = 'assets/bird-frame-1.png'
 const bird = {
   x: 100,
   y: canvas.height / 2,
-  // radius: 20,
   width: 60,
   height: 45,
   velocity: 0,
@@ -28,12 +27,6 @@ const bird = {
       this.switchFrame()
     }
     ctx.drawImage(this.frame, this.x, this.y, this.width, this.height)
-    // ctx.beginPath()
-    // ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-    // ctx.fillStyle = 'yellow'
-    // ctx.fill()
-    // ctx.stroke()
-    // ctx.closePath()
   },
 
   switchFrame() {
