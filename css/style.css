@@ -23,7 +23,6 @@ body {
 #gameCanvas {
     display: block;
     margin: auto;
-    border: 1px solid black;
     width: 400px;
     height: 300px;
 }
